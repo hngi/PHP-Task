@@ -9,11 +9,14 @@ error_reporting(E_ALL);
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['username']) {
 	$folderName = $_POST['username'];
 	$fileName = 'readme.txt';
-	// die($folderName);
 
-	var_dump(scanUserFile($fileName, $folderName));
+	$response = scanUserFile($fileName, $folderName);
+	if ($response) {
+		echo 'You passed the test';
+	} else {
+		echo 'You failed the test';
+	}
 }
-
 
 
 /**
@@ -42,7 +45,6 @@ function scanUserFile($fileName, $folderName) {
 		return true;
 
 	} else {
-		die('Failed here');
 		return false;
 	}
 }
